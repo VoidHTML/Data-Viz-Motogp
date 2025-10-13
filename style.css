@@ -1,0 +1,149 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: #000;
+    color: #fff;
+}
+
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    padding: 1rem 0;
+    transform: translateY(-100%);
+    transition: transform 0.3s ease;
+}
+
+nav.visible { transform: translateY(0); }
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    gap: 2rem;
+}
+
+nav a {
+    color: #ff6600;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.hero-section {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)),
+                url('../assets/gifs/hero.gif') center/cover no-repeat;
+}
+
+.hero-content h1 {
+    font-size: 4rem;
+    color: #ff6600;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+}
+
+.hero-content p {
+    font-size: 1.5rem;
+    color: #ccc;
+}
+
+.section {
+    min-height: 100vh;
+    padding: 5rem 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.section-header h2 {
+    font-size: 3rem;
+    color: #ff6600;
+    margin-bottom: 1rem;
+}
+
+.section-header p {
+    color: #ccc;
+    font-size: 1.2rem;
+}
+
+.content-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+}
+
+.text-card {
+    padding: 2rem;
+    background: rgba(255,102,0,0.05);
+    border: 1px solid #ff6600;
+    border-radius: 15px;
+}
+
+.text-card h3 {
+    color: #ff6600;
+    margin-bottom: 1rem;
+}
+
+.text-card p {
+    color: #ccc;
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.stat-item {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.stat-number {
+    font-size: 2rem;
+    color: #ff6600;
+    display: block;
+}
+
+.chart-container {
+    height: 400px;
+    background: rgba(0,0,0,0.3);
+    border: 2px solid #ff6600;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.slider-controls {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.slide-btn {
+    background: rgba(255,102,0,0.2);
+    color: #ff6600;
+    border: 2px solid #ff6600;
+    padding: 1rem 2rem;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+.slide-btn.active, .slide-btn:hover {
+    background: #ff6600;
+    color: #000;
+}

@@ -1,0 +1,20 @@
+{
+  "ducati": {
+    "titre": "Ducati : La Révolution Rouge",
+    "annees": ["2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024"],
+    "victoires": [2, 3, 6, 7, 6, 5, 8, 11, 16, 16],
+    "couleur": "#ff0000"
+  },
+  "honda": {
+    "titre": "Honda : L'Héritage Contesté",
+    "annees": ["2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024"],
+    "victoires": [9, 12, 9, 10, 8, 5, 3, 1, 0, 0],
+    "couleur": "#e74c3c"
+  },
+  "yamaha": {
+    "titre": "Yamaha : La Constance Remise en Question",
+    "annees": ["2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024"],
+    "victoires": [8, 7, 7, 3, 6, 7, 5, 4, 3, 2],
+    "couleur": "#3498db"
+  }
+}
