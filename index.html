@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MotoGP DataViz</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
   <!-- Librairie ECharts -->
   <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
 </head>
 
 <body>
+  <!-- Navigation -->
   <nav id="navbar">
     <ul>
       <li><a href="#hero">Accueil</a></li>
@@ -19,7 +20,7 @@
     </ul>
   </nav>
 
-  <!-- Hero -->
+  <!-- Hero Section -->
   <section id="hero" class="hero-section">
     <div class="hero-content">
       <h1>MotoGP DataViz</h1>
@@ -33,21 +34,29 @@
       <h2>Victoires par Pays</h2>
       <p>L'analyse géographique révèle la domination hispano-italienne sur la décennie MotoGP.</p>
     </div>
+
     <div class="content-grid">
       <div class="text-card">
         <h3><span class="icon">🌍</span> Domination Européenne</h3>
         <p>L'Espagne et l'Italie concentrent la majorité des victoires sur la période 2015–2024.</p>
         <div class="stats-highlight">
-          <div class="stat-item"><span class="stat-number">86%</span><span class="stat-label">ESP + ITA</span></div>
-          <div class="stat-item"><span class="stat-number">203</span><span class="stat-label">Total victoires</span></div>
+          <div class="stat-item">
+            <span class="stat-number">86%</span>
+            <span class="stat-label">ESP + ITA</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">203</span>
+            <span class="stat-label">Total victoires</span>
+          </div>
         </div>
       </div>
+
       <div class="visual-card">
         <div class="chart-container">
           <div id="chart-pays" style="width:100%;height:100%;"></div>
         </div>
         <div class="illustration-container">
-          <img src="../assets/gifs/pays.gif" alt="Animation Pays">
+          <img src="img/pays.gif" alt="Animation Pays" />
         </div>
       </div>
     </div>
@@ -59,17 +68,19 @@
       <h2>Évolution des Crashs</h2>
       <p>Malgré les progrès technologiques, le nombre d'accidents reste en hausse constante.</p>
     </div>
+
     <div class="content-grid">
       <div class="text-card">
         <h3><span class="icon">⚡</span> Paradoxe Sécuritaire</h3>
         <p>Le MotoGP n’a jamais été aussi sûr sur le papier, mais les statistiques montrent une hausse des chutes.</p>
       </div>
+
       <div class="visual-card">
         <div class="chart-container">
           <div id="chart-crashs" style="width:100%;height:100%;"></div>
         </div>
         <div class="illustration-container">
-          <img src="../assets/gifs/crashs.gif" alt="Animation Crashs">
+          <img src="img/crashs.gif" alt="Animation Crashs" />
         </div>
       </div>
     </div>
@@ -95,7 +106,7 @@
               <div id="chart-ducati" style="width:100%;height:100%;"></div>
             </div>
             <div class="illustration-container">
-              <img src="../assets/gifs/ducati.gif" alt="Animation Ducati">
+              <img src="img/ducati.gif" alt="Animation Ducati" />
             </div>
           </div>
         </div>
@@ -113,7 +124,7 @@
               <div id="chart-honda" style="width:100%;height:100%;"></div>
             </div>
             <div class="illustration-container">
-              <img src="../assets/gifs/honda.gif" alt="Animation Honda">
+              <img src="img/honda.gif" alt="Animation Honda" />
             </div>
           </div>
         </div>
@@ -131,19 +142,21 @@
               <div id="chart-yamaha" style="width:100%;height:100%;"></div>
             </div>
             <div class="illustration-container">
-              <img src="../assets/gifs/yamaha.gif" alt="Animation Yamaha">
+              <img src="img/yamaha.gif" alt="Animation Yamaha" />
             </div>
           </div>
         </div>
       </div>
     </div>
 
+    <!-- Contrôles du slider -->
     <div class="slider-controls">
       <button class="slide-btn active" data-slide="ducati">Ducati</button>
       <button class="slide-btn" data-slide="honda">Honda</button>
       <button class="slide-btn" data-slide="yamaha">Yamaha</button>
     </div>
 
+    <!-- Indicateurs -->
     <div class="slide-indicators">
       <div class="indicator active" data-slide="ducati"></div>
       <div class="indicator" data-slide="honda"></div>
@@ -152,6 +165,6 @@
   </section>
 
   <!-- Scripts -->
-  <script src="../js/main.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>
