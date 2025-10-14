@@ -8,161 +8,258 @@
   <!-- Librairie ECharts -->
   <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
 </head>
-
 <body>
-  <!-- Navigation -->
-  <nav id="navbar">
-    <ul>
-      <li><a href="#hero">Accueil</a></li>
-      <li><a href="#pays">Pays</a></li>
-      <li><a href="#crashs">Crashs</a></li>
-      <li><a href="#constructeurs">Constructeurs</a></li>
-    </ul>
-  </nav>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <ul>
+            <li><a href="#hero">Accueil</a></li>
+            <li><a href="#pays">Pays</a></li>
+            <li><a href="#crashs">Crashs</a></li>
+            <li><a href="#constructeurs">Constructeurs</a></li>
+        </ul>
+    </nav>
 
-  <!-- Hero Section -->
-  <section id="hero" class="hero-section">
-    <div class="hero-content">
-      <h1>MotoGP DataViz</h1>
-      <p>Analyse des performances 2015–2024</p>
-    </div>
-  </section>
-
-  <!-- Section Pays -->
-  <section id="pays" class="section">
-    <div class="section-header">
-      <h2>Victoires par Pays</h2>
-      <p>L'analyse géographique révèle la domination hispano-italienne sur la décennie MotoGP.</p>
-    </div>
-
-    <div class="content-grid">
-      <div class="text-card">
-        <h3><span class="icon">🌍</span> Domination Européenne</h3>
-        <p>L'Espagne et l'Italie concentrent la majorité des victoires sur la période 2015–2024.</p>
-        <div class="stats-highlight">
-          <div class="stat-item">
-            <span class="stat-number">86%</span>
-            <span class="stat-label">ESP + ITA</span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-number">203</span>
-            <span class="stat-label">Total victoires</span>
-          </div>
+    <!-- Hero Section avec GIF -->
+    <section id="hero" class="hero-section">
+        <div class="hero-content">
+            <h1>MotoGP DataViz</h1>
+            <p>Analyse des performances 2015-2024</p>
         </div>
-      </div>
+    </section>
 
-      <div class="visual-card">
-        <div class="chart-container">
-          <div id="chart-pays" style="width:100%;height:100%;"></div>
+    <!-- Section Pays -->
+    <section id="pays" class="section">
+        <div class="section-header">
+            <h2>Victoires par Pays</h2>
+            <p>L'analyse géographique révèle la domination hispano-italienne sur la décennie MotoGP</p>
         </div>
-        <div class="illustration-container">
-          <img src="img/pays.gif" alt="Animation Pays" />
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Section Crashs -->
-  <section id="crashs" class="section">
-    <div class="section-header">
-      <h2>Évolution des Crashs</h2>
-      <p>Malgré les progrès technologiques, le nombre d'accidents reste en hausse constante.</p>
-    </div>
-
-    <div class="content-grid">
-      <div class="text-card">
-        <h3><span class="icon">⚡</span> Paradoxe Sécuritaire</h3>
-        <p>Le MotoGP n’a jamais été aussi sûr sur le papier, mais les statistiques montrent une hausse des chutes.</p>
-      </div>
-
-      <div class="visual-card">
-        <div class="chart-container">
-          <div id="chart-crashs" style="width:100%;height:100%;"></div>
-        </div>
-        <div class="illustration-container">
-          <img src="img/crashs.gif" alt="Animation Crashs" />
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Section Constructeurs -->
-  <section id="constructeurs" class="section">
-    <div class="section-header">
-      <h2>Révolution des Constructeurs</h2>
-      <p>L’ascension de Ducati redéfinit les équilibres techniques du MotoGP moderne.</p>
-    </div>
-
-    <div class="constructors-slider">
-      <!-- Ducati -->
-      <div class="slide active" id="slide-ducati">
+        
         <div class="content-grid">
-          <div class="text-card">
-            <h3><span class="icon">🔴</span> Ducati : La Révolution Rouge</h3>
-            <p>Une domination technique sans précédent depuis 2022.</p>
-          </div>
-          <div class="visual-card">
-            <div class="chart-container">
-              <div id="chart-ducati" style="width:100%;height:100%;"></div>
+            <div class="text-card">
+                <h3>
+                    <span class="icon">🌍</span>
+                    Domination Européenne
+                </h3>
+                <p>
+                    Cette hégémonie européenne soulève des questions importantes sur l'accessibilité 
+                    mondiale du sport motocycliste. La concentration des talents dans quelques nations 
+                    reflète les investissements infrastructurels et culturels massifs.
+                </p>
+                <p>
+                    L'Espagne et l'Italie totalisent à elles seules 86% des victoires, 
+                    créant un quasi-duopole dans la discipline.
+                </p>
+                <div class="stats-highlight">
+                    <div class="stat-item">
+                        <span class="stat-number">86%</span>
+                        <span class="stat-label">ESP + ITA</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">203</span>
+                        <span class="stat-label">Total victoires</span>
+                    </div>
+                </div>
             </div>
-            <div class="illustration-container">
-              <img src="img/ducati.gif" alt="Animation Ducati" />
-            </div>
-          </div>
-        </div>
-      </div>
 
-      <!-- Honda -->
-      <div class="slide" id="slide-honda">
+            <div class="visual-card">
+                <div class="chart-container">
+                    <div id="chart-pays" style="width:100%;height:100%;"></div>
+                </div>
+                <div class="illustration-container">
+                    <img src="img/pays.gif" alt="Animation Pays">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Crashs -->
+    <section id="crashs" class="section">
+        <div class="section-header">
+            <h2>Évolution des Crashs</h2>
+            <p>Le paradoxe de la sécurité : malgré les innovations, les accidents augmentent</p>
+        </div>
+        
         <div class="content-grid">
-          <div class="text-card">
-            <h3><span class="icon">🔴</span> Honda : L'Héritage Contesté</h3>
-            <p>La marque historique peine à s’adapter aux nouvelles réglementations MotoGP.</p>
-          </div>
-          <div class="visual-card">
-            <div class="chart-container">
-              <div id="chart-honda" style="width:100%;height:100%;"></div>
+            <div class="text-card">
+                <h3>
+                    <span class="icon">⚡</span>
+                    Paradoxe Sécuritaire
+                </h3>
+                <p>
+                    L'analyse temporelle révèle une tendance inquiétante : malgré les avancées 
+                    technologiques en matière de sécurité, le nombre d'accidents continue 
+                    d'augmenter sur la période étudiée.
+                </p>
+                <p>
+                    Cette progression interroge sur l'équilibre entre spectacle et protection, 
+                    avec un pic historique atteint en 2023.
+                </p>
+                <div class="stats-highlight">
+                    <div class="stat-item">
+                        <span class="stat-number">358</span>
+                        <span class="stat-label">Pic 2023</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">59%</span>
+                        <span class="stat-label">vs 2015</span>
+                    </div>
+                </div>
             </div>
-            <div class="illustration-container">
-              <img src="img/honda.gif" alt="Animation Honda" />
+
+            <div class="visual-card">
+                <div class="chart-container">
+                    <div id="chart-crashs" style="width:100%;height:100%;"></div>
+                </div>
+                <div class="illustration-container">
+                    <img src="img/crashs.gif" alt="Animation Crashs">
+                </div>
             </div>
-          </div>
         </div>
-      </div>
+    </section>
 
-      <!-- Yamaha -->
-      <div class="slide" id="slide-yamaha">
-        <div class="content-grid">
-          <div class="text-card">
-            <h3><span class="icon">🔵</span> Yamaha : La Constance Remise en Question</h3>
-            <p>La marque nippone cherche un second souffle face à Ducati.</p>
-          </div>
-          <div class="visual-card">
-            <div class="chart-container">
-              <div id="chart-yamaha" style="width:100%;height:100%;"></div>
-            </div>
-            <div class="illustration-container">
-              <img src="img/yamaha.gif" alt="Animation Yamaha" />
-            </div>
-          </div>
+    <!-- Section Constructeurs avec Slider -->
+    <section id="constructeurs" class="section">
+        <div class="section-header">
+            <h2>Révolution des Constructeurs</h2>
+            <p>L'ascension de Ducati transforme la hiérarchie traditionnelle du MotoGP</p>
         </div>
-      </div>
-    </div>
+        
+        <div class="constructors-slider">
+            <!-- Slide Ducati -->
+            <div class="slide active" id="slide-ducati">
+                <div class="content-grid">
+                    <div class="text-card">
+                        <h3>
+                            <span class="icon">🔴</span>
+                            Ducati : La Révolution Rouge
+                        </h3>
+                        <p>
+                            Ducati a transformé le paysage MotoGP avec une approche technique révolutionnaire. 
+                            L'innovation aérodynamique et la puissance moteur ont permis de défier la 
+                            domination japonaise historique.
+                        </p>
+                        <p>
+                            Cette montée en puissance redessine complètement les équilibres de la décennie, 
+                            avec une domination technique incontestée depuis 2022.
+                        </p>
+                        <div class="stats-highlight">
+                            <div class="stat-item">
+                                <span class="stat-number">80</span>
+                                <span class="stat-label">Victoires</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">40.8%</span>
+                                <span class="stat-label">Part marché</span>
+                            </div>
+                        </div>
+                    </div>
 
-    <!-- Contrôles du slider -->
-    <div class="slider-controls">
-      <button class="slide-btn active" data-slide="ducati">Ducati</button>
-      <button class="slide-btn" data-slide="honda">Honda</button>
-      <button class="slide-btn" data-slide="yamaha">Yamaha</button>
-    </div>
+                    <div class="visual-card">
+                        <div class="chart-container">
+                            <div id="chart-ducati" style="width:100%;height:100%;"></div>
+                        </div>
+                        <div class="illustration-container">
+                            <img src="img/ducati.gif" alt="Animation Ducati">
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-    <!-- Indicateurs -->
-    <div class="slide-indicators">
-      <div class="indicator active" data-slide="ducati"></div>
-      <div class="indicator" data-slide="honda"></div>
-      <div class="indicator" data-slide="yamaha"></div>
-    </div>
-  </section>
+            <!-- Slide Honda -->
+            <div class="slide" id="slide-honda">
+                <div class="content-grid">
+                    <div class="text-card">
+                        <h3>
+                            <span class="icon">🔴</span>
+                            Honda : L'Héritage Contesté
+                        </h3>
+                        <p>
+                            Malgré l'ère glorieuse Márquez, Honda fait face à des défis techniques majeurs. 
+                            La marque emblématique doit se réinventer pour maintenir sa position face à 
+                            la concurrence européenne croissante.
+                        </p>
+                        <p>
+                            Les difficultés récentes illustrent la complexité d'adaptation aux nouvelles 
+                            réglementations et aux évolutions aérodynamiques du sport moderne.
+                        </p>
+                        <div class="stats-highlight">
+                            <div class="stat-item">
+                                <span class="stat-number">55</span>
+                                <span class="stat-label">Victoires</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">28.1%</span>
+                                <span class="stat-label">Part marché</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="visual-card">
+                        <div class="chart-container">
+                            <div id="chart-honda" style="width:100%;height:100%;"></div>
+                        </div>
+                        <div class="illustration-container">
+                            <img src="img/honda.gif" alt="Animation Honda">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide Yamaha -->
+            <div class="slide" id="slide-yamaha">
+                <div class="content-grid">
+                    <div class="text-card">
+                        <h3>
+                            <span class="icon">🔵</span>
+                            Yamaha : La Constance Remise en Question
+                        </h3>
+                        <p>
+                            Yamaha navigue entre tradition et innovation. Malgré le talent de Quartararo, 
+                            la marque peine à retrouver sa domination des années 2000, face aux évolutions 
+                            technologiques rapides.
+                        </p>
+                        <p>
+                            L'équilibre traditionnel de leurs machines ne suffit plus dans un MotoGP 
+                            où l'aérodynamique et l'électronique redéfinissent les performances.
+                        </p>
+                        <div class="stats-highlight">
+                            <div class="stat-item">
+                                <span class="stat-number">45</span>
+                                <span class="stat-label">Victoires</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">23.0%</span>
+                                <span class="stat-label">Part marché</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="visual-card">
+                        <div class="chart-container">
+                            <div id="chart-yamaha" style="width:100%;height:100%;"></div>
+                        </div>
+                        <div class="illustration-container">
+                            <img src="img/yamaha.gif" alt="Animation Yamaha">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contrôles du slider -->
+        <div class="slider-controls">
+            <button class="slide-btn active" data-slide="ducati">Ducati</button>
+            <button class="slide-btn" data-slide="honda">Honda</button>
+            <button class="slide-btn" data-slide="yamaha">Yamaha</button>
+        </div>
+
+        <!-- Indicateurs -->
+        <div class="slide-indicators">
+            <div class="indicator active" data-slide="ducati"></div>
+            <div class="indicator" data-slide="honda"></div>
+            <div class="indicator" data-slide="yamaha"></div>
+        </div>
+    </section>
 
   <!-- Scripts -->
   <script src="js/main.js"></script>
