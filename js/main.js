@@ -1,6 +1,6 @@
-// Chargement des données JSON (à la racine, pas dans data/)
+// Chargement des données JSON
 async function chargerJSON(fichier) {
-    const response = await fetch(`${fichier}`);
+    const response = await fetch(`data/${fichier}`);
     if (!response.ok) throw new Error(`Erreur chargement ${fichier}`);
     return await response.json();
 }
@@ -185,9 +185,81 @@ function initSlider() {
 
         document.querySelectorAll('.indicator').forEach(ind => ind.classList.remove('active'));
         document.querySelector(`.indicator[data-slide="${constructor}"]`).classList.add('active');
+        
+        // Redessiner le graphique après changement de slide
+        setTimeout(() => {
+            const chartElement = document.getElementById(`chart-${constructor}`);
+            if (chartElement) {
+                const chartInstance = echarts.getInstanceByDom(chartElement);
+                if (chartInstance) {
+                    chartInstance.resize();
+                }
+            }
+        }, 100);
     }
 
     document.querySelectorAll('.slide-btn').forEach(btn => {
         btn.addEventListener('click', e => {
             e.preventDefault();
             showSlide(btn.getAttribute('data-slide'));
+            btn.style.transform = 'scale(0.95)';
+            setTimeout(() => { btn.style.transform = ''; }, 150);
+        });
+    });
+
+    document.querySelectorAll('.indicator').forEach(ind => {
+        ind.addEventListener('click', () => showSlide(ind.getAttribute('data-slide')));
+    });
+}
+
+// Animations au scroll
+function animateOnScroll() {
+    const elements = document.querySelectorAll('.text-card, .chart-container, .stat-item');
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+                setTimeout(() => {
+                    entry.target.classList.add('visible');
+                }, index * 100);
+            }
+        });
+    }, { threshold: 0.2 });
+
+    elements.forEach(element => {
+        observer.observe(element);
+    });
+}
+
+// Animation des statistiques avec compteur
+function animateStats() {
+    const statNumbers = document.querySelectorAll('.stat-number');
+    
+    statNumbers.forEach(stat => {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !entry.target.dataset.animated) {
+                    entry.target.dataset.animated = 'true';
+                    const finalValue = entry.target.textContent;
+                    const isPercentage = finalValue.includes('%');
+                    const numericValue = parseInt(finalValue.replace(/[^\d]/g, ''));
+                    
+                    let currentValue = 0;
+                    const increment = numericValue / 50;
+                    
+                    const counter = setInterval(() => {
+                        currentValue += increment;
+                        if (currentValue >= numericValue) {
+                            currentValue = numericValue;
+                            clearInterval(counter);
+                        }
+                        
+                        entry.target.textContent = Math.floor(currentValue) + (isPercentage ? '%' : '');
+                    }, 30);
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        observer.observe(stat);
+    });
+}
