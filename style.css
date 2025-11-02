@@ -49,9 +49,9 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    text-align: center;
     position: relative;
     overflow: hidden;
+    background-repeat: no-repeat;
     background-image: url(img/fond\ dataviz.png);
 }
 
