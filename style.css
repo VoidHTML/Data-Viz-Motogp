@@ -326,20 +326,21 @@ nav a:hover::after {
 .slider-controls {
     display: flex;
     justify-content: center;
-    gap: 1rem;
+    gap: 0.8rem;
     margin: 3rem 0 1rem 0;
+    flex-wrap: wrap;  /* ← Cette ligne est importante pour 6 boutons */
 }
 
 .slide-btn {
     background: rgba(255,102,0,0.2);
     color: #ff6600;
     border: 2px solid #ff6600;
-    padding: 1rem 2rem;
+    padding: 0.8rem 1.5rem;  /* ← Boutons un peu plus petits */
     border-radius: 25px;
     cursor: pointer;
     transition: all 0.4s ease;
     font-weight: 600;
-    font-size: 1rem;
+    font-size: 0.9rem;  /* ← Texte légèrement plus petit */
     position: relative;
     overflow: hidden;
 }
