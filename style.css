@@ -75,9 +75,9 @@ body {
 
 .hero-rider {
     position: absolute;
-    left: 5%;
+    left: -5%;
     bottom: 0;
-    height: 90%;
+    height: 100%;
     object-fit: contain;
     z-index: 1;
     animation: riderSlideIn 1.5s ease-out forwards;
@@ -115,7 +115,7 @@ body {
 
 /* === ANIMATIONS === */
 @keyframes riderSlideIn {
-    0% { transform: translateX(-50px); opacity: 0; }
+    0% { transform: translateX(-100px); opacity: 0; }
     100% { transform: translateX(0); opacity: 1; }
 }
 
