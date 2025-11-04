@@ -52,69 +52,14 @@ body {
     text-align: center;
     position: relative;
     overflow: hidden;
-}
-
-/* Fond fixe */
-.hero-background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
     background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)), 
-                url('img/fond-statique.png') center/cover no-repeat;
-    z-index: 0;
+                url('img/fond-dataviz.png') center/cover no-repeat;
 }
 
-
-.hero-moto {
-    position: absolute;
-    width: 600px; 
-    height: 400px;
-    background: url('img/moto.png') center/contain no-repeat;
-    z-index: 1;
-    
-    /* Position finale */
-    right: 10%;
-    top: 50%;
-    transform: translateY(-50%);
-    
-    /* Animation d'entrée */
-    animation: motoEntry 2s ease-out forwards;
-    opacity: 0;
-}
-
-@keyframes motoEntry {
-    0% {
-        transform: translateX(-150%) translateY(-50%) rotate(-10deg);
-        opacity: 0;
-    }
-    60% {
-        opacity: 1;
-    }
-    100% {
-        transform: translateX(0) translateY(-50%) rotate(0deg);
-        opacity: 1;
-    }
-}
-
-/* Contenu texte apparaît après */
 .hero-content {
     position: relative;
-    z-index: 2;
-    animation: contentFadeIn 1s ease-out 1.5s forwards;
-    opacity: 0;
-}
-
-@keyframes contentFadeIn {
-    0% {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    z-index: 1;
+    animation: heroFadeIn 2s ease-out;
 }
 
 .hero-content h1 {
