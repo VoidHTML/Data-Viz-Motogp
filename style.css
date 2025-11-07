@@ -92,9 +92,9 @@ body {
 }
 
 .hero-content {
-    position: relative;
+    position:relative;
     z-index: 3;
-    text-align: right;
+    text-align: right ;
     animation: fadeInUp 1.8s ease-out forwards;
 }
 
