@@ -263,3 +263,131 @@ function animateStats() {
         observer.observe(stat);
     });
 }
+
+
+// Variables globales pour le carousel circuits
+let currentCircuitIndex = 0;
+const circuitCards = document.querySelectorAll('.circuit-card-3d');
+const circuitIndicators = document.querySelectorAll('.circuit-indicator');
+const totalCircuits = circuitCards.length;
+
+// Fonction pour mettre à jour l'affichage du carousel
+function updateCircuitCarousel() {
+    circuitCards.forEach((card, index) => {
+        // Retirer toutes les classes
+        card.classList.remove('active', 'prev', 'next');
+        
+        if (index === currentCircuitIndex) {
+            // Carte active (au centre)
+            card.classList.add('active');
+        } else if (index === (currentCircuitIndex - 1 + totalCircuits) % totalCircuits) {
+            // Carte précédente (à gauche)
+            card.classList.add('prev');
+        } else if (index === (currentCircuitIndex + 1) % totalCircuits) {
+            // Carte suivante (à droite)
+            card.classList.add('next');
+        }
+    });
+
+    // Mettre à jour les indicateurs
+    circuitIndicators.forEach((indicator, index) => {
+        indicator.classList.toggle('active', index === currentCircuitIndex);
+    });
+}
+
+// Fonction pour changer de carte
+function changeCircuitCard(direction) {
+    currentCircuitIndex = (currentCircuitIndex + direction + totalCircuits) % totalCircuits;
+    updateCircuitCarousel();
+}
+
+// Fonction pour aller directement à une carte
+function goToCircuitCard(index) {
+    currentCircuitIndex = index;
+    updateCircuitCarousel();
+}
+
+// Écouteurs d'événements pour les flèches
+document.querySelector('.circuit-arrow-left').addEventListener('click', () => {
+    changeCircuitCard(-1);
+});
+
+document.querySelector('.circuit-arrow-right').addEventListener('click', () => {
+    changeCircuitCard(1);
+});
+
+// Écouteurs d'événements pour les indicateurs
+circuitIndicators.forEach((indicator, index) => {
+    indicator.addEventListener('click', () => {
+        goToCircuitCard(index);
+    });
+});
+
+// Support clavier pour le carousel circuits
+document.addEventListener('keydown', (e) => {
+    // Vérifier si on est dans la section circuits
+    const circuitsSection = document.querySelector('#circuits');
+    const rect = circuitsSection.getBoundingClientRect();
+    const isInView = rect.top < window.innerHeight && rect.bottom > 0;
+    
+    if (isInView) {
+        if (e.key === 'ArrowLeft') {
+            changeCircuitCard(-1);
+        } else if (e.key === 'ArrowRight') {
+            changeCircuitCard(1);
+        }
+    }
+});
+
+// Support tactile (swipe) pour mobile
+let touchStartX = 0;
+let touchEndX = 0;
+
+const carouselContainer = document.querySelector('.circuits-carousel-container');
+
+carouselContainer.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+}, false);
+
+carouselContainer.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+}, false);
+
+function handleSwipe() {
+    const swipeThreshold = 50; // Distance minimale pour détecter un swipe
+    
+    if (touchEndX < touchStartX - swipeThreshold) {
+        // Swipe vers la gauche -> carte suivante
+        changeCircuitCard(1);
+    }
+    
+    if (touchEndX > touchStartX + swipeThreshold) {
+        // Swipe vers la droite -> carte précédente
+        changeCircuitCard(-1);
+    }
+}
+
+// Auto-play optionnel (commenté par défaut)
+// let autoPlayInterval;
+// function startAutoPlay() {
+//     autoPlayInterval = setInterval(() => {
+//         changeCircuitCard(1);
+//     }, 5000); // Change toutes les 5 secondes
+// }
+
+// function stopAutoPlay() {
+//     clearInterval(autoPlayInterval);
+// }
+
+// // Démarrer l'auto-play
+// startAutoPlay();
+
+// // Arrêter l'auto-play au hover
+// carouselContainer.addEventListener('mouseenter', stopAutoPlay);
+// carouselContainer.addEventListener('mouseleave', startAutoPlay);
+
+// Initialisation du carousel au chargement
+updateCircuitCarousel();
+
+console.log('🏁 Carousel 3D des circuits initialisé avec succès!');

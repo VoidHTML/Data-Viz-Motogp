@@ -1,4 +1,3 @@
-
 * {
     margin: 0;
     padding: 0;
@@ -453,4 +452,390 @@ nav a:hover::after {
         flex-wrap: wrap;
         gap: 1rem;
     }
+}
+/* ========== SECTION CIRCUITS 3D ========== */
+.circuits-carousel-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    height: 650px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.circuits-carousel-container {
+    position: relative;
+    width: 400px;
+    height: 550px;
+    perspective: 1000px;
+}
+
+/* Card 3D avec effet hover */
+.circuit-card-3d {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s ease;
+    opacity: 0;
+    pointer-events: none;
+    transform-style: preserve-3d;
+}
+
+.circuit-card-3d.active {
+    opacity: 1;
+    pointer-events: all;
+    z-index: 10;
+}
+
+.circuit-card-3d.prev {
+    transform: translateX(-150%) scale(0.75) rotateY(30deg);
+    opacity: 0.2;
+    z-index: 1;
+}
+
+.circuit-card-3d.next {
+    transform: translateX(150%) scale(0.75) rotateY(-30deg);
+    opacity: 0.2;
+    z-index: 1;
+}
+
+/* Container with 3D effect */
+.card-3d-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.2s ease;
+}
+
+.card-3d-wrapper:active {
+    transform: scale(0.98);
+}
+
+.card-3d-inner {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 25px;
+    transition: transform 0.125s ease, box-shadow 0.7s ease;
+    background: linear-gradient(135deg, #ff6600 0%, #ff4400 50%, #ff8800 100%);
+    overflow: hidden;
+    box-shadow: 
+        0 20px 60px rgba(255, 102, 0, 0.4),
+        0 0 0 1px rgba(255, 255, 255, 0.1);
+    transform-style: preserve-3d;
+}
+
+.card-3d-inner::before {
+    content: '';
+    background: linear-gradient(135deg, rgba(255, 102, 0, 0.8) 0%, rgba(255, 68, 0, 0.6) 50%, rgba(255, 136, 0, 0.8) 100%);
+    filter: blur(3rem);
+    opacity: 40%;
+    width: 120%;
+    height: 120%;
+    position: absolute;
+    z-index: -1;
+    transition: opacity 0.3s ease;
+    top: -10%;
+    left: -10%;
+}
+
+.card-3d-wrapper:hover .card-3d-inner::before {
+    opacity: 70%;
+}
+
+.card-3d-wrapper:hover .card-3d-inner {
+    box-shadow: 
+        0 25px 80px rgba(255, 102, 0, 0.6),
+        0 0 0 1px rgba(255, 255, 255, 0.2);
+}
+
+/* Circuit Image */
+.circuit-image {
+    width: 100%;
+    height: 65%;
+    object-fit: cover;
+    border-radius: 25px 25px 0 0;
+    transition: transform 0.3s ease;
+}
+
+.card-3d-wrapper:hover .circuit-image {
+    transform: scale(1.05);
+}
+
+/* Circuit Info */
+.circuit-info-box {
+    padding: 25px;
+    width: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.7));
+    backdrop-filter: blur(15px);
+    border-radius: 0 0 25px 25px;
+}
+
+.circuit-name {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: white;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.circuit-country {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 18px;
+}
+
+.circuit-details-grid {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.detail-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    padding: 10px;
+    background: rgba(255, 102, 0, 0.15);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 102, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.detail-box:hover {
+    background: rgba(255, 102, 0, 0.25);
+    border-color: rgba(255, 102, 0, 0.5);
+    transform: translateY(-3px);
+}
+
+.detail-label {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.75rem;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.detail-value {
+    font-weight: bold;
+    font-size: 1rem;
+    color: #ff6600;
+}
+
+/* Canvas pour le tracking 3D */
+.canvas-3d {
+    perspective: 800px;
+    inset: 0;
+    z-index: 200;
+    position: absolute;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    pointer-events: none;
+}
+
+.tracker {
+    pointer-events: all;
+    position: relative;
+    z-index: 200;
+}
+
+.tracker:hover {
+    cursor: pointer;
+}
+
+.tracker:hover ~ .card-3d-inner {
+    transition: transform 0.125s ease;
+    filter: brightness(1.15);
+}
+
+/* Effet 3D au hover - Zones de tracking */
+.tr-1:hover ~ .card-3d-inner { transform: rotateX(20deg) rotateY(-10deg); }
+.tr-2:hover ~ .card-3d-inner { transform: rotateX(20deg) rotateY(-5deg); }
+.tr-3:hover ~ .card-3d-inner { transform: rotateX(20deg) rotateY(0deg); }
+.tr-4:hover ~ .card-3d-inner { transform: rotateX(20deg) rotateY(5deg); }
+.tr-5:hover ~ .card-3d-inner { transform: rotateX(20deg) rotateY(10deg); }
+.tr-6:hover ~ .card-3d-inner { transform: rotateX(10deg) rotateY(-10deg); }
+.tr-7:hover ~ .card-3d-inner { transform: rotateX(10deg) rotateY(-5deg); }
+.tr-8:hover ~ .card-3d-inner { transform: rotateX(10deg) rotateY(0deg); }
+.tr-9:hover ~ .card-3d-inner { transform: rotateX(10deg) rotateY(5deg); }
+.tr-10:hover ~ .card-3d-inner { transform: rotateX(10deg) rotateY(10deg); }
+.tr-11:hover ~ .card-3d-inner { transform: rotateX(0deg) rotateY(-10deg); }
+.tr-12:hover ~ .card-3d-inner { transform: rotateX(0deg) rotateY(-5deg); }
+.tr-13:hover ~ .card-3d-inner { transform: rotateX(0deg) rotateY(0deg); }
+.tr-14:hover ~ .card-3d-inner { transform: rotateX(0deg) rotateY(5deg); }
+.tr-15:hover ~ .card-3d-inner { transform: rotateX(0deg) rotateY(10deg); }
+.tr-16:hover ~ .card-3d-inner { transform: rotateX(-10deg) rotateY(-10deg); }
+.tr-17:hover ~ .card-3d-inner { transform: rotateX(-10deg) rotateY(-5deg); }
+.tr-18:hover ~ .card-3d-inner { transform: rotateX(-10deg) rotateY(0deg); }
+.tr-19:hover ~ .card-3d-inner { transform: rotateX(-10deg) rotateY(5deg); }
+.tr-20:hover ~ .card-3d-inner { transform: rotateX(-10deg) rotateY(10deg); }
+.tr-21:hover ~ .card-3d-inner { transform: rotateX(-20deg) rotateY(-10deg); }
+.tr-22:hover ~ .card-3d-inner { transform: rotateX(-20deg) rotateY(-5deg); }
+.tr-23:hover ~ .card-3d-inner { transform: rotateX(-20deg) rotateY(0deg); }
+.tr-24:hover ~ .card-3d-inner { transform: rotateX(-20deg) rotateY(5deg); }
+.tr-25:hover ~ .card-3d-inner { transform: rotateX(-20deg) rotateY(10deg); }
+
+/* Navigation Arrows */
+.circuit-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, rgba(255, 102, 0, 0.2), rgba(255, 68, 0, 0.1));
+    border: 2px solid rgba(255, 102, 0, 0.4);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(255, 102, 0, 0.3);
+}
+
+.circuit-arrow:hover {
+    background: linear-gradient(135deg, rgba(255, 102, 0, 0.4), rgba(255, 68, 0, 0.3));
+    border-color: rgba(255, 102, 0, 0.7);
+    transform: translateY(-50%) scale(1.15);
+    box-shadow: 0 6px 25px rgba(255, 102, 0, 0.5);
+}
+
+.circuit-arrow:active {
+    transform: translateY(-50%) scale(1.05);
+}
+
+.circuit-arrow-left {
+    left: 50px;
+}
+
+.circuit-arrow-right {
+    right: 50px;
+}
+
+.circuit-arrow svg {
+    width: 35px;
+    height: 35px;
+    fill: #ff6600;
+    transition: fill 0.3s ease;
+}
+
+.circuit-arrow:hover svg {
+    fill: white;
+}
+
+/* Indicators */
+.circuit-indicators {
+    position: absolute;
+    bottom: -70px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 15px;
+    z-index: 100;
+}
+
+.circuit-indicator {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: rgba(255, 102, 0, 0.3);
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 2px solid transparent;
+}
+
+.circuit-indicator:hover {
+    background: rgba(255, 102, 0, 0.6);
+    transform: scale(1.2);
+}
+
+.circuit-indicator.active {
+    background: #ff6600;
+    width: 40px;
+    border-radius: 7px;
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 15px rgba(255, 102, 0, 0.6);
+}
+
+/* Responsive pour les circuits */
+@media (max-width: 1024px) {
+    .circuits-carousel-wrapper {
+        height: 600px;
+    }
+    
+    .circuits-carousel-container {
+        width: 350px;
+        height: 500px;
+    }
+    
+    .circuit-arrow {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .circuit-arrow-left {
+        left: 20px;
+    }
+    
+    .circuit-arrow-right {
+        right: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .circuits-carousel-wrapper {
+        height: 550px;
+    }
+    
+    .circuits-carousel-container {
+        width: 300px;
+        height: 450px;
+    }
+    
+    .circuit-arrow {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .circuit-arrow svg {
+        width: 25px;
+        height: 25px;
+    }
+    
+    .circuit-arrow-left {
+        left: 10px;
+    }
+    
+    .circuit-arrow-right {
+        right: 10px;
+    }
+    
+    .circuit-name {
+        font-size: 1.5rem;
+    }
+    
+    .circuit-country {
+        font-size: 1rem;
+    }
+    
+    .detail-value {
+        font-size: 0.9rem;
+    }
+}
+
+.noselect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
